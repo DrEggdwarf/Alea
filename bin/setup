@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -e
+
+# Load rbenv if available
+if [ -d "$HOME/.rbenv/bin" ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init - bash)"
+fi
+
+# Add user gem bin to PATH
+RUBY_MINOR=$(ruby -e 'puts RUBY_VERSION[/\d+\.\d+/]' 2>/dev/null || echo "3.3")
+export PATH="$HOME/.local/share/gem/ruby/${RUBY_MINOR}.0/bin:$PATH"
+
+echo "== Ruby: $(ruby -v) =="
+
+echo "== Installing gems =="
+bundle config set --local path 'vendor/bundle'
+bundle install
+
+echo "== Installing JS dependencies =="
+npm install
+
+echo "== Preparing database =="
+bundle exec rails db:prepare
+
+echo "== Starting server =="
+echo "=> Open http://localhost:3000"
+exec bin/dev

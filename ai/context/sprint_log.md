@@ -1,0 +1,46 @@
+# Sprint Log — Alea
+
+## Sprint 2026-03-30 — Sprint 0 : Infrastructure & Setup
+- **Tickets** : Scaffold complet du projet Alea
+- **Agents utilisés** : aucun (setup initial)
+- **Source** : Boilerplate DrEggdwarf/Rails-Boilerplate
+- **Fichiers créés** :
+  - `Dockerfile` (multi-stage Ruby 3.3 + Node 22 + PG)
+  - `docker-compose.yml` (PostgreSQL 16 + Redis 7 + web)
+  - `app/controllers/games_controller.rb`
+  - `app/controllers/api/coach_controller.rb`
+  - `app/controllers/api/games_controller.rb`
+  - `app/controllers/users/sessions_controller.rb`
+  - `app/controllers/users/registrations_controller.rb`
+  - `app/services/coach_service.rb`
+  - `app/services/claude_client.rb`
+  - `app/services/prompts/coach_system.txt`
+  - `app/models/user.rb` (Devise + profil optionnel)
+  - `app/models/game.rb`
+  - `app/frontend/pages/Home.jsx`
+  - `app/frontend/pages/Play.jsx` (placeholder)
+  - `app/frontend/pages/Auth/Login.jsx`
+  - `app/frontend/pages/Auth/Register.jsx`
+  - `db/migrate/20260330000001_devise_create_users.rb`
+  - `db/migrate/20260330000002_create_games.rb`
+  - `config/initializers/devise.rb`
+  - `config/initializers/cors.rb`
+- **Fichiers modifiés** :
+  - `Gemfile` (pg, devise, redis, rack-cors, faraday)
+  - `config/database.yml` (PostgreSQL)
+  - `config/routes.rb` (devise + games + api)
+  - `vite.config.ts` (+tailwindcss plugin)
+  - `package.json` (arbiter, +chess.js, +tailwindcss)
+  - `app/frontend/styles/globals.css` (Tailwind v4 + design tokens Alea)
+  - `app/views/layouts/application.html.erb` (fonts + titre)
+  - `app/controllers/application_controller.rb` (current_user props)
+  - `config/locales/fr.yml` + `en.yml` (Alea i18n)
+  - `Procfile.dev` (bind 0.0.0.0 pour Docker)
+  - `CLAUDE.md` (stack Alea)
+- **Décisions prises** :
+  - PostgreSQL partout (dev + prod) via Docker Compose
+  - Devise pour auth avec champs profil optionnels
+  - Tailwind CSS v4 avec @theme pour design tokens
+  - Board custom (pas react-chessboard) pour contrôle total annotations
+  - Proxy Rails pour Claude API (sécurité clé)
+- **Statut** : Terminé

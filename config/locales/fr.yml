@@ -1,0 +1,32 @@
+fr:
+  app:
+    name: "Alea"
+    tagline: "Coach d'échecs socratique"
+  coach:
+    title: "Coach"
+    active: "actif"
+    inactive: "inactif"
+    thinking: "Réflexion..."
+    placeholder: "Décris ton intention, pose une question..."
+    tabs:
+      discussion: "Discussion"
+      moves: "Coups"
+  board:
+    new_game: "Nouvelle partie"
+    undo: "Annuler"
+    reset: "Recommencer"
+    explore: "Explorer"
+    back_to_game: "Retour à la partie"
+    depth_warning: "Profondeur élevée — latence possible"
+    exploration_mode: "Mode exploration"
+  common:
+    play: "Jouer"
+    cancel: "Annuler"
+    save: "Sauvegarder"
+    loading: "Chargement..."
+  byok:
+    title: "Clé API Anthropic"
+    placeholder: "sk-ant-..."
+    help: "Ta clé reste dans ton navigateur, jamais stockée sur le serveur."
+    start: "Commencer"
+    invalid: "Clé API invalide. Vérifie le format (sk-ant-...)."

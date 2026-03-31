@@ -1,0 +1,61 @@
+services:
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: alea
+      POSTGRES_PASSWORD: alea_dev
+      POSTGRES_DB: alea_development
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U alea"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+      - "3036:3036"
+    volumes:
+      - .:/rails
+      - bundle_cache:/usr/local/bundle
+      - node_modules:/rails/node_modules
+    environment:
+      DATABASE_URL: postgres://alea:alea_dev@db:5432/alea_development
+      REDIS_URL: redis://redis:6379/0
+      RAILS_ENV: development
+      VITE_RUBY_HOST: 0.0.0.0
+    command: >
+      bash -c "rm -f tmp/pids/server.pid &&
+      bundle install &&
+      npm install &&
+      bundle exec rails db:prepare &&
+      foreman start -f Procfile.dev"
+    stdin_open: true
+    tty: true
+
+volumes:
+  pgdata:
+  bundle_cache:
+  node_modules:

@@ -1,0 +1,32 @@
+en:
+  app:
+    name: "Alea"
+    tagline: "Socratic chess coach"
+  coach:
+    title: "Coach"
+    active: "active"
+    inactive: "inactive"
+    thinking: "Thinking..."
+    placeholder: "Describe your intention, ask a question..."
+    tabs:
+      discussion: "Discussion"
+      moves: "Moves"
+  board:
+    new_game: "New game"
+    undo: "Undo"
+    reset: "Reset"
+    explore: "Explore"
+    back_to_game: "Back to game"
+    depth_warning: "High depth — possible latency"
+    exploration_mode: "Exploration mode"
+  common:
+    play: "Play"
+    cancel: "Cancel"
+    save: "Save"
+    loading: "Loading..."
+  byok:
+    title: "Anthropic API Key"
+    placeholder: "sk-ant-..."
+    help: "Your key stays in your browser, never stored on the server."
+    start: "Start"
+    invalid: "Invalid API key. Check the format (sk-ant-...)."
