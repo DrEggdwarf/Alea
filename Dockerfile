@@ -32,6 +32,7 @@ RUN apt-get update -qq && \
       build-essential \
       git \
       libpq-dev \
+      libyaml-dev \
       pkg-config \
       && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
@@ -51,6 +52,9 @@ RUN npm ci
 
 # Copy application code
 COPY . .
+
+# Fix bin permissions
+RUN chmod +x bin/*
 
 # Precompile assets (Vite build + Rails assets)
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile

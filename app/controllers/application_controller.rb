@@ -2,6 +2,14 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   before_action :set_locale
+  after_action :allow_iframe_from_portfolio
+
+  private
+
+  def allow_iframe_from_portfolio
+    response.headers.delete("X-Frame-Options")
+    response.headers["Content-Security-Policy"] = "frame-ancestors 'self' https://robin-borg.dev https://aegyl.fr"
+  end
 
   inertia_share do
     {
