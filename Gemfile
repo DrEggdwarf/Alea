@@ -29,7 +29,7 @@ gem "inertia_rails"
 gem "vite_rails"
 
 # HTTP client for Claude API proxy
-gem "faraday", "~> 2.0"
+gem "faraday", "~> 2.14"
 
 # Deploy as Docker container
 gem "kamal", require: false
