@@ -1,3 +1,8 @@
+# ==============================================================================
+# ⚠️  NON UTILISÉ — template Kamal par défaut (rails new), jamais configuré.
+# Ce repo n'est PAS déployé via `kamal deploy`. Déploiement réel : hors Kamal.
+# Sera remplacé par une vraie config lors de la migration Kamal de la flotte.
+# ==============================================================================
 # Name of your application. Used to uniquely configure containers.
 service: app_name
 
